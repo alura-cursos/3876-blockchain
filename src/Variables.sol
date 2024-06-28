@@ -22,4 +22,30 @@ contract Variables {
     enum State { Created, Locked, Inactive }
     State public state;
 
+    // public, internal, external, private
+    function getGreeting() public returns (string memory) {
+        return "Hello, World!";
+    }
+
+    // pure, view
+    function getGreetingPure() public pure returns (string memory) {
+        return "Hello, World!";
+    }
+
+    function add(uint _a, uint _b) public pure returns (uint) {
+        return _a + _b;
+    }
+
+    function getNameView() public view returns (string memory) {
+        return name;
+    }
+
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Not the contract owner");
+        _;
+    }
+
+    function getNameViewOnlyOwner() public view onlyOwner returns (string memory) {
+        return name;
+    }
 }
